@@ -26,6 +26,14 @@
 
       </ul>
     </div>
+    <div class="aside__roles">
+      <p>Id объекта: {{ infoDots.id }}</p>
+      <p>Адресс: {{ infoDots.column_4 }}</p>
+      <p>Наименование: {{ infoDots.column_6 }}</p>
+      <p>Категория: {{ infoDots.column_7 }}</p>
+      <p>Состояние: {{ infoDots.column_8 }}</p>
+      <p>Объект: {{ infoDots.column_18 }}</p>
+    </div>
   </div>
 </template>
 
@@ -35,6 +43,9 @@ export default {
     named__map: {
       type: String,
     },
+    infoDots: {
+      type: Object,
+    }
 
 
   },
@@ -65,6 +76,13 @@ export default {
       font-size: 0.8rem;
       color: #908c8c;
     }
+  }
+
+  &__roles {
+    border: 1px solid #000;
+    margin: 1rem;
+    text-align: center;
+    border-radius: 1rem;
   }
 
   &__choice-list {

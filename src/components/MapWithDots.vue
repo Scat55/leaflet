@@ -1,6 +1,6 @@
 <template>
   <div class="dots">
-    <Aside />
+    <Aside :infoDots="infoId.data" />
     <div class="map">
       <router-link
         to="/"
@@ -16,32 +16,70 @@
         <l-tile-layer
           :url="url"
           :attribution="attribution"
-        ></l-tile-layer></l-map>
+        ></l-tile-layer>
+        <l-circle-marker
+          v-for="inf in info"
+          :radius="circle.radius"
+          :color="circle.color"
+          :lat-lng="inf.geometry.coordinates"
+          @click="infoDots()"
+        ></l-circle-marker>
+      </l-map>
+
+      <p>{{ infoId.data }}</p>
     </div>
   </div>
 </template>
 
 <script>
 import Aside from './Aside.vue';
-import { LMap, LTileLayer } from 'vue2-leaflet';
+import { LMap, LTileLayer, LCircleMarker, LGeoJson } from 'vue2-leaflet';
+import axios from 'axios';
 
 export default {
   components: {
     Aside,
     LMap,
-    LTileLayer
+    LTileLayer,
+    LCircleMarker,
   },
   data() {
     return {
-      markerLatLng: [52.391972, 38.919456],
       url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       attribution:
         '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       zoom: 10,
       fillColor: "#e4ce7f",
-      center: [52.391972, 38.919456],
+      center: [52.585536, 39.620851],
+      info: {},
+      circle: {
+        center: [52.585536, 39.620851],
+        radius: 6,
+        color: '#f63f3f'
+      },
+      infoId: {},
     }
   },
+
+  methods: {
+    infoDots() {
+      alert(this.infoId.data.column_18)
+    }
+  },
+
+
+
+  mounted() {
+    axios.get('https://gis-api.admlr.lipetsk.ru/api/v1/beautification/greenspaces/points')
+      .then(response => (this.info = response.data.features))
+      .catch(error => console.log(error));
+
+    axios.get('https://gis-api.admlr.lipetsk.ru/api/v1/beautification/greenspaces/data/150')
+      .then(response => (this.infoId = response.data))
+      .catch(error => console.log(error));
+
+  },
+
 }
 </script>
 

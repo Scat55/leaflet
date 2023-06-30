@@ -58,8 +58,6 @@ export default {
       fillColor: "#e4ce7f",
       center: [52.391972, 38.919456],
       geojson: Static,
-
-
     };
   },
   methods: {
@@ -74,7 +72,7 @@ export default {
     },
   },
   mounted() {
-    console.log(Static)
+    // console.log(Static)
   },
 }
 </script>
