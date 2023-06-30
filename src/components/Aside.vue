@@ -26,7 +26,10 @@
 
       </ul>
     </div>
-    <div class="aside__roles">
+    <div
+      class="aside__roles"
+      v-if="isVisibleInfo"
+    >
       <p>Id объекта: {{ infoDots.id }}</p>
       <p>Адресс: {{ infoDots.column_4 }}</p>
       <p>Наименование: {{ infoDots.column_6 }}</p>
@@ -38,6 +41,7 @@
 </template>
 
 <script>
+
 export default {
   props: {
     named__map: {
@@ -45,16 +49,16 @@ export default {
     },
     infoDots: {
       type: Object,
+    },
+    isVisibleInfo: {
+      type: Boolean
     }
-
-
   },
   data() {
     return {
 
     }
   },
-
 }
 </script>
 

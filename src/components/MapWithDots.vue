@@ -1,6 +1,9 @@
 <template>
   <div class="dots">
-    <Aside :infoDots="infoId.data" />
+    <Aside
+      :infoDots="infoId.data"
+      :isVisibleInfo="isVisible"
+    />
     <div class="map">
       <router-link
         to="/"
@@ -22,11 +25,11 @@
           :radius="circle.radius"
           :color="circle.color"
           :lat-lng="inf.geometry.coordinates"
-          @click="infoDots()"
+          @click="showInfo()"
         ></l-circle-marker>
       </l-map>
 
-      <p>{{ infoId.data }}</p>
+      <!-- <p>{{ infoId.data }}</p> -->
     </div>
   </div>
 </template>
@@ -58,17 +61,9 @@ export default {
         color: '#f63f3f'
       },
       infoId: {},
+      isVisible: false
     }
   },
-
-  methods: {
-    infoDots() {
-      alert(this.infoId.data.column_18)
-    }
-  },
-
-
-
   mounted() {
     axios.get('https://gis-api.admlr.lipetsk.ru/api/v1/beautification/greenspaces/points')
       .then(response => (this.info = response.data.features))
@@ -78,6 +73,11 @@ export default {
       .then(response => (this.infoId = response.data))
       .catch(error => console.log(error));
 
+  },
+  methods: {
+    showInfo() {
+      this.isVisible = true
+    }
   },
 
 }
