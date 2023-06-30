@@ -22,7 +22,8 @@
         <l-geo-json
           :geojson="geojson"
           @click="showName()"
-        ></l-geo-json>
+        >
+        </l-geo-json>
         <l-marker :lat-lng="markerLatLng"></l-marker>
       </l-map>
     </div>
@@ -48,7 +49,6 @@ export default {
   },
   data() {
     return {
-      isVisible: false,
       named: '',
       markerLatLng: [52.391972, 38.919456],
       url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',

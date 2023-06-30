@@ -1,12 +1,12 @@
 <template>
-  <div class="emptymap">
+  <div class="dots">
     <Aside />
-    <div class="map ">
+    <div class="map">
       <router-link
         to="/"
         class="map__link"
       >
-        <div class="emtymap__btn">На главную</div>
+        <div class="map__btn">На главную</div>
       </router-link>
       <l-map
         style="height: 80vh"
@@ -16,24 +16,20 @@
         <l-tile-layer
           :url="url"
           :attribution="attribution"
-        ></l-tile-layer>
-      </l-map>
+        ></l-tile-layer></l-map>
     </div>
   </div>
 </template>
 
 <script>
 import Aside from './Aside.vue';
+import { LMap, LTileLayer } from 'vue2-leaflet';
 
-import { LMap, LTileLayer, LMarker, LPolygon, LGeoJson } from 'vue2-leaflet';
 export default {
   components: {
+    Aside,
     LMap,
-    LTileLayer,
-    LGeoJson,
-    LMarker,
-    LPolygon,
-    Aside
+    LTileLayer
   },
   data() {
     return {
@@ -43,24 +39,17 @@ export default {
         '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       zoom: 10,
       fillColor: "#e4ce7f",
-      center: [52.608826, 39.599229],
-    };
+      center: [52.391972, 38.919456],
+    }
   },
 }
 </script>
 
 <style lang="scss" scoped>
-.emptymap {
+.dots {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   gap: 1rem;
-}
-
-.emtymap__btn {
-  padding: 1rem;
-  width: 7rem;
-  border: 1px solid #000;
-  border-radius: 1rem;
 }
 
 .map {
@@ -75,6 +64,13 @@ export default {
     text-decoration: none;
     color: #000;
     text-align: center;
+  }
+
+  &__btn {
+    padding: 1rem;
+    width: 7rem;
+    border: 1px solid #000;
+    border-radius: 1rem;
   }
 }
 </style>

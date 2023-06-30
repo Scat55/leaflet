@@ -5,11 +5,23 @@
 
     <div class="aside__choice">
       <ul class="aside__choice-list">
-        <router-link to="map">
+        <router-link
+          to="map"
+          class="aside__choice-link"
+        >
           <li class="choice__list-item">Лесничества</li>
         </router-link>
-        <router-link to="emtymap">
+        <router-link
+          to="emtymap"
+          class="aside__choice-link"
+        >
           <li class="choice__list-item">Пустая</li>
+        </router-link>
+        <router-link
+          to="dots"
+          class="aside__choice-link"
+        >
+          <li class="choice__list-item">Точки</li>
         </router-link>
 
       </ul>
@@ -39,7 +51,6 @@ export default {
 .aside {
   height: 80vh;
   width: 25vw;
-  // background-color: rgb(197, 232, 197);
   border: 0.2rem solid rgb(197, 232, 197);
   border-radius: 1rem;
   margin-top: 5rem;
@@ -62,9 +73,25 @@ export default {
     gap: 1rem;
   }
 
+  &__choice-link {
+    text-decoration: none;
+    color: #000;
+  }
+
   .choice__list-item {
+    border: 1px solid #000;
+    border-radius: 1rem;
+    width: 10rem;
+    padding: 0.5rem;
+    outline: none;
+    text-align: center;
     list-style: none;
     cursor: pointer;
+    transition: all .3s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 
 }

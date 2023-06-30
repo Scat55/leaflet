@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import Home from '../components/Welcome';
 import Map from '../components/Map';
 import EmptyMap from '../components/EmptyMap';
+import Dots from '../components/MapWithDots';
 
 Vue.use(VueRouter);
 
@@ -21,6 +22,11 @@ const routes = [
     path: '/emtymap',
     name: 'emptymap',
     component: EmptyMap,
+  },
+  {
+    path: '/dots',
+    name: 'dots',
+    component: Dots,
   },
 ];
 
